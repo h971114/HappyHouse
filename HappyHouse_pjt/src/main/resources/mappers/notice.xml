@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+
+
+
+     <select id="selectnotice"  resultType="notice">
+	  SELECT n_no,title,hit,content FROM notice ORDER BY n_no DESC
+	 </select>
+	 
+     <select id="selectnoticeall" parameterType="map"  resultType="notice">
+	  SELECT n_no,title,hit,content FROM notice   ORDER BY n_no DESC  limit ${start}, ${spp}
+	 </select>
+	 
+	 
+	 <select id="select" parameterType="int"  resultType="notice">
+	   SELECT n_no,title,hit,content FROM notice WHERE n_no = #{n_no}
+	 </select>
+	
+	 <insert id="insert"  >
+	    INSERT INTO notice VALUES(null, #{title}, 0,#{content})
+	 </insert>
+
+	 	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from notice
+
+	</select>
+	 
+<!-- 	  
+	 <select id="select"  parameterType="String"  resultType="product">
+	    select id,name,price,description from product where id=#{id}
+	 </select>
+	 <select id="select"  parameterType="String"  resultType="String">
+	    select id from product where id=#{id}
+	 </select>
+	 <select id="select"  parameterType="String"  resultType="int">
+	    select price from product where id=#{id}
+	 </select>
+	 <select id="select"  parameterType="String"  resultType="product">
+	    select id,name from product where id=#{id}
+	 </select>
+	 <select id="select"  parameterType="java.util.Map"  resultType="java.util.HashMap">
+	    select id,name,dname from product,dept where id=#{id}
+	 </select>
+ -->	
+	
+	
+</mapper>
+
+
+
+
+
+
+

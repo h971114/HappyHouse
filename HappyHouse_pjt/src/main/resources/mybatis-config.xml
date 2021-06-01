@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+                  "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+    <typeAliases>
+<typeAlias type="com.ssafy.happyhouse.model.MemberDto" alias="member"/>
+   <typeAlias type="com.ssafy.happyhouse.model.HouseInfoDto"  alias="houseinfo"/>  
+      <typeAlias type="com.ssafy.happyhouse.model.SidoGugunCodeDto"  alias="housemap"/>
+      <typeAlias type="com.ssafy.happyhouse.model.NoticeDto"  alias="notice"/>
+      <typeAlias type="com.ssafy.happyhouse.model.HouseDealDto"  alias="housedeal"/>
+      <typeAlias type="com.ssafy.happyhouse.model.StoreInfoDto"  alias="storeinfo"/>
+      <typeAlias type="com.ssafy.happyhouse.model.DongCodeDto"  alias="dongcode"/>
+      <typeAlias type="com.ssafy.happyhouse.model.HighSchoolDto"  alias="highschool"/>
+      <typeAlias type="com.ssafy.happyhouse.model.SubwayDto"  alias="subway"/>
+            <typeAlias type="com.ssafy.happyhouse.model.NewsDto"  alias="news"/>
+   </typeAliases> 
+     <!-- 
+   	<environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${dbid}"/>
+                <property name="password" value="${dbpwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    
+    
+    <mappers>
+		<mapper resource="mappers/member.xml" />
+		<mapper resource="mappers/guestbook.xml" />
+	</mappers>-->
+   <!-- 
+   
+  
+   <typeAliases>
+      <package name="com.ssafy.product.dto" />
+   </typeAliases>
+    ==> product.xml에서는 Type속성에 Product클래스명만 써도 된다. 
+    -->
+</configuration>

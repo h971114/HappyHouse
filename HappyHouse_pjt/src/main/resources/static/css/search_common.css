@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.masthead{
+		height : 200px;
+}
+.searchHouses{
+		padding : 150px 0px 0px 0px;
+}
+#searchResults{
+	width : 30%;
+	float : left;
+}
+.result{
+	margin : 15px;
+}
+.resultName a{
+		font-weight: bold;
+		color : blue;
+	}
+#map{
+	width: 70%; height: 400px; margin: auto;
+	float : left;
+}

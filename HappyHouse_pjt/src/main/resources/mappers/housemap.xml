@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="housemap">
+
+
+     <select id="selectsido"  resultType="housemap">
+	   SELECT left(sido_code,2) sido_code, sido_name FROM sidocode ORDER BY sido_code
+	 </select>
+	 
+	 
+	 <select id="selectgugun" parameterType="String" resultType="housemap">
+	    SELECT left(gugun_code,5) gugun_code, gugun_name FROM guguncode where left(gugun_code,2) = #{sido} ORDER BY gugun_code
+	 </select>
+	
+	 <select id="selectdong" parameterType="String" resultType="houseinfo">
+	    SELECT distinct dong, code FROM houseinfo where code = #{gugun} ORDER BY dong
+	 </select>
+	 
+<!--  	 <select id="selectaptlist" parameterType="map" resultType="houseinfo">
+	   SELECT no,dong,AptName,code,jibun,lat,lng FROM houseinfo WHERE dong = #{dong} ORDER BY AptName limit ${map.start}, ${map.spp}
+	 </select>-->
+	 
+	 <select id="selectapt" parameterType="String" resultType="houseinfo">
+	   SELECT no,dong,AptName,code,jibun,lat,lng FROM houseinfo WHERE dong = #{dong} ORDER BY AptName
+	 </select>
+	 
+	<!--  <select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from houseinfo
+
+	</select>-->
+
+	
+	
+</mapper>
+
+
+
+
+
+
+

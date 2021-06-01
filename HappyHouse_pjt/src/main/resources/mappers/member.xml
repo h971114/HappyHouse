@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="member">
+	<insert id="insert" parameterType="member">
+		insert into member (id,pw,name,address,phoneNumber,dongcode) values (#{id},SHA2(#{password}, 256),#{name},#{address},#{phoneNumber},#{dongcode})
+	</insert>
+	
+	<insert id="insertNull" parameterType="member">
+		insert into member (id,pw,name,address,phoneNumber,dongcode) values (#{id},SHA2(#{password}, 256),#{name},#{address},#{phoneNumber}, null)
+	</insert>
+	
+	
+	<update id="update" parameterType="member">
+		update member set pw=SHA2(#{password}, 256), name=#{name}, address=#{address}, phoneNumber=#{phoneNumber}, dongcode=#{dongcode} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from member where id=#{id}
+	</delete>
+	
+	<select id="select" parameterType="String" resultType="member">
+		select pw as password,name,address,phonenumber,ifnull(dongcode, 0) as dongcode from member where id=#{id}
+	</select>
+	
+	<select id="selectAll" resultType="member">
+		select id,pw,name,address,phoneNumber,dongcode from member
+	</select>
+	
+	<select id="loginCheck" parameterType="Map" resultType="int">
+		select count(*) from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<select id="searchArea" parameterType="Map" resultType="int">
+		select ifnull(dongcode, 0) as dongcode from dongcode where city=#{city} and gugun=#{gugun} and dong=#{dong}
+	</select>
+	
+<!-- 	<select id="getArea" parameterType="int" resultType="String"> -->
+<!-- 		select city, gugun, dong from dongcode where dongcode=#{dongcode} -->
+<!-- 	</select> -->
+	<select id="getArea" parameterType="int" resultType="Map">
+		select city, gugun, dong from dongcode where dongcode=#{dongcode}
+	</select>
+	
+	<select id="getLocate" parameterType="int" resultType="Map">
+		select lat, lng from baseaddress where code=${dongcode}
+	</select>
+	
+	<select id="getDong" parameterType="int" resultType="String">
+		select dong from dongcode where dongcode=#{dongcode}
+	</select>
+	 
+	<select id="getGun" parameterType="int" resultType="String" >
+		select gugun from dongcode where dongcode=#{dongcode}
+	</select>
+	
+	<select id="getPercent" parameterType="String" resultType="String">
+		select t_per from highschool where gugun=#{gun};
+		
+	</select>
+	<select id="getRank" parameterType="String" resultType="int">
+		SELECT (COUNT(*)+1) as ranking FROM highschool where t_per > (select t_per from highschool where gugun=#{gun})
+		
+	</select>
+	<select id="getSubway" parameterType="String" resultType="subway">
+		SELECT * from subway where address LIKE concat('%',#{dong},'%')
+		
+	</select>
+</mapper>
